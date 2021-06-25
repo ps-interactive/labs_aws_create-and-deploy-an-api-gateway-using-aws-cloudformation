@@ -4,7 +4,7 @@ Description: AWS API Gateway with a Lambda Integration
 
 Resources:
   LambdaFunction:
-    Type: AWS::Lambda::Function
+    Type:
     Properties:
       Code:
         ZipFile: |
@@ -26,35 +26,18 @@ Resources:
       Handler: index.handler
       MemorySize: 256
       Role: !GetAtt LambdaIamRole.Arn
-      Runtime: nodejs12.x
+      Runtime:
       Timeout: 60
 
   LambdaIamRole:
-    Type: AWS::IAM::Role
+    Type:
     Properties:
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
-          - Effect: 'Allow'
+          - Effect:
             Principal:
               Service:
                 - 'lambda.amazonaws.com'
             Action:
               - 'sts:AssumeRole'
-
-  ApiGatewayRestApi:
-    Type:
-    Properties:
-      ApiKeySourceType: HEADER
-      Description: API Gateway for listing users
-      EndpointConfiguration:
-        Types:
-          - EDGE
-      Name:
-
-  ApiGatewayResource:
-    Type:
-    Properties:
-      ParentId: !GetAtt ApiGatewayRestApi.RootResourceId
-      PathPart:
-      RestApiId:
